@@ -11,8 +11,13 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: 'profile',
-    component: ProfileComponent
+    path: 'user',
+    children: [
+      {
+        path: ':id/profile',
+        component: ProfileComponent
+      }
+    ]
   },
   {
     path: 'login',

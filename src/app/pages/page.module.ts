@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { ComponentModule } from '../components/component.module';
 import { SharedModule } from '../shared/shared.module';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
@@ -12,6 +13,6 @@ import { SignupComponent } from './signup/signup.component';
     SignupComponent,
     ProfileComponent,
   ],
-  imports: [SharedModule],
+  imports: [SharedModule, ComponentModule],
 })
 export class PageModule {}

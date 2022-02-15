@@ -43,6 +43,32 @@
 
       .form_group {
         display: flex;
+
+        &-group {
+          flex: 1;
+
+          .group {
+            display: flex;
+          }
+
+          .form_control {
+            padding: 0 2rem;
+            label {
+              display: block;
+              padding: 1rem 0;
+              font-size: 1.5rem;
+            }
+            input {
+              width: 100%;
+              padding: 1rem;
+              background-color: #fff;
+            }
+          }
+        }
+      }
+
+      .form_btn {
+        padding: 2rem;
       }
     }
   }
