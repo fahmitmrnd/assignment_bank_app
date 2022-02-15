@@ -1,0 +1,99 @@
+.container {
+  background-color: #ccc;
+}
+.nav {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+
+  &_logo {
+    h1 {
+      padding: 1rem 2rem;
+      font-size: 2rem;
+    }
+  }
+
+  &_navbar {
+    flex: 1;
+    padding: 0 4rem;
+
+    &-group {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      &_item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 2rem;
+        height: 100%;
+
+        &:not(:last-child) {
+          margin-right: 2rem;
+        }
+
+        a {
+          font-size: 1.4rem;
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+
+  &_user {
+    position: relative;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+    p {
+      padding: 1rem;
+      font-size: 1.4rem;
+    }
+
+    &-dropdown {
+      display: none;
+      position: absolute;
+      top: 5rem;
+      left: 0;
+
+      width: 100%;
+      background-color: #fff;
+      -webkit-box-shadow: 10px 10px 45px -15px rgba(0,0,0,0.75);
+      -moz-box-shadow: 10px 10px 45px -15px rgba(0,0,0,0.75);
+      box-shadow: 10px 10px 45px -15px rgba(0,0,0,0.75);
+
+      &_item {
+        padding: .6rem 1rem;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        transition: all .3s;
+        &:not(:last-child) {
+          margin-bottom: .5rem;
+        }
+        &:hover {
+          transform: translateY(-.3rem);
+      -webkit-box-shadow: 10px 10px 45px -15px rgba(0,0,0,0.75);
+      -moz-box-shadow: 10px 10px 45px -15px rgba(0,0,0,0.75);
+      box-shadow: 10px 10px 45px -15px rgba(0,0,0,0.75);
+        }
+        mat-icon {
+          font-size: 2rem;
+        }
+        a {
+          font-size: 1.4rem;
+          padding: 0 1rem;
+        }
+      }
+    }
+  }
+
+  .active {
+    .nav_user-dropdown {
+      display: block;
+    }
+  }
+}
