@@ -12,6 +12,7 @@ import { Component, EventEmitter, Input, Output } from "@angular/core";
       margin: 0 .5rem;
       padding: 1rem 2rem;
       border-radius: 2rem;
+      cursor: pointer;
       &-primary {
         color: #fff;
         background-color: #007bff;
