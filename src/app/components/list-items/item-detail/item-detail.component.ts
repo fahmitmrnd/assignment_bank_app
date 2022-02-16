@@ -15,8 +15,20 @@ export class ItemDetailComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  get itemUI() {
+  get itemKey() {
     const item = Object.keys(this.data);
     return item;
+  }
+
+  get itemData() {
+    return Object.keys(this.data).reduce((prev: any, cur: any) => {
+      if(!prev[cur]) {
+        prev[cur] = {
+          value: this.data[cur],
+          type: this.data[cur] instanceof Date ? 'date': typeof this.data[cur]
+        }
+      }
+      return prev;
+    }, {})
   }
 }

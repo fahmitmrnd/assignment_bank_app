@@ -1,8 +1,14 @@
 <li class="item">
-  <p *ngFor="let item of itemUI">
+  <p *ngFor="let item of itemKey" [ngSwitch]="itemData[item].type">
     {{item | titleFilter}}:
-    <span>
-      {{data[item] | censored:10}}
+    <span *ngSwitchCase="'string'">
+      {{itemData[item].value | censored: 10}}
+    </span>
+    <span *ngSwitchCase="'number'">
+      {{itemData[item].value}}
+    </span>
+    <span *ngSwitchCase="'date'">
+      {{itemData[item].value | date}}
     </span>
   </p>
 </li>

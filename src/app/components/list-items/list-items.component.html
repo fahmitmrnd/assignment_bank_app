@@ -1,8 +1,12 @@
 <div class="container">
-  <ul class="list">
+  <ul class="list" *ngIf="listData && listData.length; else no_data">
+    <h1>TEST</h1>
     <app-item-detail-component
       [data]="item"
-      *ngFor="let item of mockData">
+      *ngFor="let item of listData">
     </app-item-detail-component>
   </ul>
+  <ng-template #no_data>
+    <app-not-found-component content="No transactions found!!"></app-not-found-component>
+  </ng-template>
 </div>
