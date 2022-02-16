@@ -12,12 +12,12 @@
         </li>
 
         <li class="nav_navbar-group_item">
-          <a>Transfer Money</a>
+          <a [routerLink]="['/user', 1, 'transaction']">Transfer Money</a>
         </li>
 
-        <li class="nav_navbar-group_item">
+        <!-- <li class="nav_navbar-group_item">
           <a>XYZ</a>
-        </li>
+        </li> -->
       </ul>
     </div>
 
@@ -27,6 +27,10 @@
       <ul class="nav_user-dropdown">
         <li class="nav_user-dropdown_item">
           <mat-icon>manage_accounts</mat-icon>
+          <a [routerLink]="['/user', 1, 'profile']">Manage</a>
+        </li>
+        <li class="nav_user-dropdown_item">
+          <mat-icon>settings</mat-icon>
           <a [routerLink]="['/user', 1, 'profile']">Profile</a>
         </li>
         <li class="nav_user-dropdown_item">

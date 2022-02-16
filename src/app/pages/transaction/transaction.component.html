@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="form">
+
+    <div class="form_header">
+      Transfer Money
+    </div>
+
+    <form class="form_group">
+      <div class="form_control">
+        <label for="sender">Sender:</label>
+        <input disabled type="text" id="sender">
+      </div>
+
+      <div class="form_control">
+        <label for="recipient">Recipient:</label>
+        <input type="text" id="recipient">
+      </div>
+
+      <div class="form_control">
+        <label for="amount">Amount:</label>
+        <input type="text" id="amount">
+      </div>
+
+      <div class="form_btn">
+        <app-button-component type="submit" className="btn-success">Transfer</app-button-component>
+
+        <app-button-component type="submit" className="btn-danger">Cancel</app-button-component>
+      </div>
+
+    </form>
+  </div>
+</div>

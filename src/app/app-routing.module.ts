@@ -5,6 +5,7 @@ import { HomeComponent } from "./pages/home/home.component";
 import { LoginComponent } from "./pages/login/login.component";
 import { ProfileComponent } from "./pages/profile/profile.component";
 import { SignupComponent } from "./pages/signup/signup.component";
+import { TransactionComponent } from "./pages/transaction/transaction.component";
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
       {
         path: ':id/history',
         component: HistoryComponent
+      },
+      {
+        path: ':id/transaction',
+        component: TransactionComponent
       }
     ]
   },

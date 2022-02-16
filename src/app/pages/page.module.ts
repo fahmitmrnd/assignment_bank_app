@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SignupComponent } from './signup/signup.component';
+import { TransactionComponent } from './transaction/transaction.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { SignupComponent } from './signup/signup.component';
     LoginComponent,
     SignupComponent,
     ProfileComponent,
-    HistoryComponent
+    HistoryComponent,
+    TransactionComponent
   ],
   imports: [SharedModule, ComponentModule],
 })
