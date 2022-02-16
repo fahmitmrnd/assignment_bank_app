@@ -5,6 +5,7 @@ import { DropdownDirective } from './directive/dropdown.directive';
 import { CommonModule } from '@angular/common';
 import { TitleFilterPipe } from './pipe/title-filter.pipe';
 import { TruncatePipe } from './pipe/truncate.pipe';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -12,14 +13,20 @@ import { TruncatePipe } from './pipe/truncate.pipe';
     TitleFilterPipe,
     TruncatePipe
   ],
-  imports: [CommonModule, RouterModule, MatIconModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    MatIconModule,
+    ReactiveFormsModule
+  ],
   exports: [
     CommonModule,
     RouterModule,
     MatIconModule,
     DropdownDirective,
     TitleFilterPipe,
-    TruncatePipe
+    TruncatePipe,
+    ReactiveFormsModule
   ],
 })
 export class SharedModule {}

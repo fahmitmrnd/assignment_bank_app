@@ -41,6 +41,11 @@
         background-color: #fff;
         padding: .4rem;
       }
+
+      .disabled {
+        background-color: #ddd;
+        pointer-events: none;
+      }
     }
 
     .form_btn {

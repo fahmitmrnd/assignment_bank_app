@@ -5,26 +5,26 @@
       Transfer Money
     </div>
 
-    <form class="form_group">
+    <form class="form_group" [formGroup]="transactionForm" (ngSubmit)="onSubmit()">
       <div class="form_control">
         <label for="sender">Sender:</label>
-        <input disabled type="text" id="sender">
+        <input formControlName="sender" type="text" id="sender" class="disabled" value="username">
       </div>
 
       <div class="form_control">
         <label for="recipient">Recipient:</label>
-        <input type="text" id="recipient">
+        <input formControlName="recipient" type="text" id="recipient">
       </div>
 
       <div class="form_control">
         <label for="amount">Amount:</label>
-        <input type="text" id="amount">
+        <input formControlName="amount" type="text" id="amount">
       </div>
 
       <div class="form_btn">
         <app-button-component type="submit" className="btn-success">Transfer</app-button-component>
 
-        <app-button-component type="submit" className="btn-danger">Cancel</app-button-component>
+        <app-button-component className="btn-danger">Cancel</app-button-component>
       </div>
 
     </form>
