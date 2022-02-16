@@ -8,11 +8,11 @@
     <div class="nav_navbar">
       <ul class="nav_navbar-group">
         <li class="nav_navbar-group_item">
-          <a>Home</a>
+          <a routerLink="/">Home</a>
         </li>
 
         <li class="nav_navbar-group_item">
-          <a>ABC</a>
+          <a>Transfer Money</a>
         </li>
 
         <li class="nav_navbar-group_item">
@@ -27,7 +27,7 @@
       <ul class="nav_user-dropdown">
         <li class="nav_user-dropdown_item">
           <mat-icon>manage_accounts</mat-icon>
-          <a href="#">Profile</a>
+          <a [routerLink]="['/user', 1, 'profile']">Profile</a>
         </li>
         <li class="nav_user-dropdown_item">
           <mat-icon>history</mat-icon>

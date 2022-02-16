@@ -1,0 +1,8 @@
+<li class="item">
+  <p *ngFor="let item of itemUI">
+    {{item | titleFilter}}:
+    <span>
+      {{data[item] | censored:10}}
+    </span>
+  </p>
+</li>

@@ -1,0 +1,34 @@
+.form {
+  margin-top: 2rem;
+
+  &_group {
+    display: flex;
+
+    &-group {
+      flex: 1;
+
+      .group {
+        display: flex;
+      }
+
+      .form_control {
+        width: 100%;
+        padding: 0 2rem;
+        label {
+          display: block;
+          padding: 1rem 0;
+          font-size: 1.5rem;
+        }
+        input {
+          width: 100%;
+          padding: 1rem;
+          background-color: #fff;
+        }
+      }
+    }
+  }
+
+  &_btn {
+    padding: 2rem;
+  }
+}

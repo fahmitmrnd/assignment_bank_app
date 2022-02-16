@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  API_KEY: 'pttam.110494@gmail.com',
+  BASE_URL: 'https://web-assessment.apps.ocp.tmrnd.com.my'
 };
 
 /*
