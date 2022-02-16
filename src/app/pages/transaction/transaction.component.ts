@@ -8,6 +8,7 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 })
 export class TransactionComponent implements OnInit {
   transactionForm: FormGroup;
+  currentBalance: number = 50;
   constructor() {}
 
   ngOnInit(): void {
@@ -21,16 +22,21 @@ export class TransactionComponent implements OnInit {
         disabled: true
       }, [Validators.required]),
       recipient: new FormControl(null, [Validators.required]),
-      amount: new FormControl(null, [Validators.required]),
+      amount: new FormControl(null, [Validators.required, this.balanceValidator]),
     })
   }
 
-  validateBalance(control: FormControl): {[k: string]: boolean} | null {
+  balanceValidator = (control: FormControl): {[k: string]: boolean} | null => {
+    if(Number(control.value) > this.currentBalance) {
+      return {'exceed': true};
+    }
+
     return null;
   }
 
   onSubmit() {
-    console.log(this.transactionForm);
-
+    this.transactionForm.reset({
+      sender: 'username'
+    });
   }
 }

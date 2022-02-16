@@ -3,7 +3,11 @@ import { Component, EventEmitter, Input, Output } from "@angular/core";
 @Component({
   selector: 'app-button-component',
   template: `
-    <button [className]="'btn ' + className" [type]="buttonType">
+    <button
+      [disabled]="isDisabled"
+      [className]="'btn ' + className"
+      [type]="buttonType"
+      [ngClass]="{'disabled': isDisabled}">
       <ng-content></ng-content>
     </button>
   `,
@@ -30,9 +34,14 @@ import { Component, EventEmitter, Input, Output } from "@angular/core";
         background-color: #e0a800;
       }
     }
+    .disabled {
+      opacity: .4;
+      cursor: not-allowed;
+    }
   `]
 })
 export class ButtonComponent {
   @Input('type') buttonType: string = 'button';
   @Input() className: string = 'btn-primary';
+  @Input('disabled') isDisabled: boolean = false;
 }

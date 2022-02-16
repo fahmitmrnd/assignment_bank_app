@@ -6,12 +6,14 @@ import { CommonModule } from '@angular/common';
 import { TitleFilterPipe } from './pipe/title-filter.pipe';
 import { TruncatePipe } from './pipe/truncate.pipe';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TestDirective } from './directive/test.directive';
 
 @NgModule({
   declarations: [
     DropdownDirective,
+    TestDirective,
     TitleFilterPipe,
-    TruncatePipe
+    TruncatePipe,
   ],
   imports: [
     CommonModule,
@@ -24,6 +26,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     RouterModule,
     MatIconModule,
     DropdownDirective,
+    TestDirective,
     TitleFilterPipe,
     TruncatePipe,
     ReactiveFormsModule

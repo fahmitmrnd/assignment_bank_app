@@ -14,17 +14,33 @@
       <div class="form_control">
         <label for="recipient">Recipient:</label>
         <input formControlName="recipient" type="text" id="recipient">
+        <!-- <div *ngIf="transactionForm.get('recipient')?.invalid && transactionForm.get('recipient')?.touched">
+          <p *ngIf="transactionForm.get('recipient')?.errors!['required']">Please provide sender</p>
+        </div> -->
+        <div [appTestDirective]="transactionForm.get('recipient')?.errors"></div>
       </div>
 
       <div class="form_control">
         <label for="amount">Amount:</label>
-        <input formControlName="amount" type="text" id="amount">
+        <input formControlName="amount" type="number" id="amount">
+        <div *ngIf="transactionForm.get('amount')?.invalid && transactionForm.get('amount')?.touched">
+          <p *ngIf="transactionForm.get('amount')?.errors!['exceed']">Exceed balance</p>
+          <p *ngIf="transactionForm.get('amount')?.errors!['required']">Please provide amount</p>
+        </div>
       </div>
 
       <div class="form_btn">
-        <app-button-component type="submit" className="btn-success">Transfer</app-button-component>
+        <app-button-component
+          [disabled]="transactionForm.invalid"
+          type="submit"
+          className="btn-success">
+            Transfer
+        </app-button-component>
 
-        <app-button-component className="btn-danger">Cancel</app-button-component>
+        <app-button-component
+          className="btn-danger">
+            Cancel
+        </app-button-component>
       </div>
 
     </form>
