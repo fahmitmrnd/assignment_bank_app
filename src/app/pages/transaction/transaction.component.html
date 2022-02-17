@@ -14,10 +14,10 @@
       <div class="form_control">
         <label for="recipient">Recipient:</label>
         <input formControlName="recipient" type="text" id="recipient">
-        <!-- <div *ngIf="transactionForm.get('recipient')?.invalid && transactionForm.get('recipient')?.touched">
+        <div *ngIf="transactionForm.get('recipient')?.invalid && transactionForm.get('recipient')?.touched">
           <p *ngIf="transactionForm.get('recipient')?.errors!['required']">Please provide sender</p>
-        </div> -->
-        <div [appTestDirective]="transactionForm.get('recipient')?.errors"></div>
+        </div>
+        <!-- <div [appTestDirective]="transactionForm.get('recipient')?.invalid && transactionForm.get('recipient')?.touched"></div> -->
       </div>
 
       <div class="form_control">
