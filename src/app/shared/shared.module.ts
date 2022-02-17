@@ -8,11 +8,13 @@ import { TruncatePipe } from './pipe/truncate.pipe';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TestDirective } from './directive/test.directive';
 import { HasPermissionDirective } from './directive/hasPermission.directive';
+import { HasPrivilegeDirective } from './directive/hasPrivilege.directive';
 
 @NgModule({
   declarations: [
     DropdownDirective,
     HasPermissionDirective,
+    HasPrivilegeDirective,
     TestDirective,
     TitleFilterPipe,
     TruncatePipe,
@@ -29,6 +31,7 @@ import { HasPermissionDirective } from './directive/hasPermission.directive';
     MatIconModule,
     DropdownDirective,
     HasPermissionDirective,
+    HasPrivilegeDirective,
     TestDirective,
     TitleFilterPipe,
     TruncatePipe,

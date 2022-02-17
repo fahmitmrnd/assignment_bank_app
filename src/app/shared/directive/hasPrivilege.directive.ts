@@ -3,9 +3,9 @@ import { Subject, takeUntil } from "rxjs";
 import { AuthService } from "../service/auth.service";
 
 @Directive({
-  selector: '[appHasPermission]'
+  selector: '[appHasPrivilege]'
 })
-export class HasPermissionDirective implements OnInit, OnDestroy {
+export class HasPrivilegeDirective implements OnInit, OnDestroy {
   unsubscribe$: Subject<any> = new Subject();
 
   constructor(
@@ -18,7 +18,7 @@ export class HasPermissionDirective implements OnInit, OnDestroy {
     this._authService.user
     .pipe(takeUntil(this.unsubscribe$))
     .subscribe((user) => {
-      if(!!user) {
+      if(!!user && user['role'] === 'admin') {
         this.vcRef.createEmbeddedView(this.templateRef);
       } else {
         this.vcRef.clear();

@@ -25,19 +25,28 @@
       <mat-icon>perm_identity</mat-icon>
       <p>{{ username }}</p>
       <ul class="nav_user-dropdown">
-        <li [routerLink]="['/user', 1, 'profile']" class="nav_user-dropdown_item">
+        <li
+          *appHasPrivilege
+          [routerLink]="['/user', 1, 'profile']"
+          class="nav_user-dropdown_item">
           <mat-icon>manage_accounts</mat-icon>
           <p>Manage</p>
         </li>
-        <li (click)="onNavigate('profile')" class="nav_user-dropdown_item">
+        <li
+        (click)="onNavigate('profile')"
+        class="nav_user-dropdown_item">
           <mat-icon>settings</mat-icon>
           <p>Profile</p>
         </li>
-        <li (click)="onNavigate('history')" class="nav_user-dropdown_item">
+        <li
+        (click)="onNavigate('history')"
+        class="nav_user-dropdown_item">
           <mat-icon>history</mat-icon>
           <p>History</p>
         </li>
-        <li (click)="onLogout()" class="nav_user-dropdown_item">
+        <li
+        (click)="onLogout()"
+        class="nav_user-dropdown_item">
           <mat-icon>logout</mat-icon>
           <p>Logout</p>
         </li>

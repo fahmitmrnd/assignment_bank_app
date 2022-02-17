@@ -33,6 +33,19 @@ export class AuthService {
     this.user.next(user);
   }
 
+  filterUserRole(userData: AuthResData) {
+    // Due to API response doesn't contain user's role/type
+    // I created this method for checking user privilege
+    const user = {...userData};
+    if(userData['email'].startsWith('admin')) {
+      user['role'] = 'admin';
+    } else {
+      user['role'] = 'user';
+    }
+
+    return user;
+  }
+
   logout() {
     this.user.next(null);
     this._router.navigate(['/login']);
@@ -42,6 +55,7 @@ export class AuthService {
   private authenticationHandler(userData: AuthResData) {
     this.user.next(userData);
     this._router.navigate(['/']);
-    localStorage.setItem('userData', JSON.stringify(userData));
+    const user = this.filterUserRole(userData);
+    localStorage.setItem('userData', JSON.stringify(user));
   }
 }

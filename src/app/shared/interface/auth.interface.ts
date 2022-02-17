@@ -14,4 +14,5 @@ export interface AuthResData {
   name: string;
   postcode: string;
   state: string;
+  role?: string;
 }
