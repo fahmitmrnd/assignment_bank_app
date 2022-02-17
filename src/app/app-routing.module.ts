@@ -6,14 +6,17 @@ import { LoginComponent } from "./pages/login/login.component";
 import { ProfileComponent } from "./pages/profile/profile.component";
 import { SignupComponent } from "./pages/signup/signup.component";
 import { TransactionComponent } from "./pages/transaction/transaction.component";
+import { AuthGuard } from "./shared/guard/auth.guard";
 
 const routes: Routes = [
   {
     path: '',
+    canActivate: [AuthGuard],
     component: HomeComponent
   },
   {
     path: 'user',
+    canActivate: [AuthGuard],
     children: [
       {
         path: ':id/profile',

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *appHasPermission>
   <div class="nav">
 
     <div class="nav_logo">
@@ -23,7 +23,7 @@
 
     <button appDropdownDirective class="nav_user">
       <mat-icon>perm_identity</mat-icon>
-      <p>Username</p>
+      <p>{{ username }}</p>
       <ul class="nav_user-dropdown">
         <li class="nav_user-dropdown_item">
           <mat-icon>manage_accounts</mat-icon>
@@ -31,15 +31,15 @@
         </li>
         <li class="nav_user-dropdown_item">
           <mat-icon>settings</mat-icon>
-          <a [routerLink]="['/user', 1, 'profile']">Profile</a>
+          <a (click)="onNavigate('profile')">Profile</a>
         </li>
         <li class="nav_user-dropdown_item">
           <mat-icon>history</mat-icon>
-          <a [routerLink]="['/user', 1, 'history']">History</a>
+          <a (click)="onNavigate('history')">History</a>
         </li>
         <li class="nav_user-dropdown_item">
           <mat-icon>logout</mat-icon>
-          <a href="#">Logout</a>
+          <a (click)="onLogout()">Logout</a>
         </li>
       </ul>
     </button>

@@ -1,17 +1,22 @@
 .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 
-  width: 40rem;
+  width: 30rem;
+  min-height: 30rem;
 
   border-radius: 2rem;
   background-color: #eee;
 
   form {
-
+    width: 100%;
     .form_group {
+
       padding: 2rem;
       .form_control {
         width: 100%;
@@ -30,12 +35,18 @@
           background-color: #fff;
           border: 1px solid #ccc;
         }
+
+        p {
+          margin-top: .5rem;
+          font-size: 1.2rem;
+          color: red;
+        }
       }
     }
 
     .form_btn {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
       padding: 2rem 4rem;
 

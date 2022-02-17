@@ -7,10 +7,12 @@ import { TitleFilterPipe } from './pipe/title-filter.pipe';
 import { TruncatePipe } from './pipe/truncate.pipe';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TestDirective } from './directive/test.directive';
+import { HasPermissionDirective } from './directive/hasPermission.directive';
 
 @NgModule({
   declarations: [
     DropdownDirective,
+    HasPermissionDirective,
     TestDirective,
     TitleFilterPipe,
     TruncatePipe,
@@ -26,6 +28,7 @@ import { TestDirective } from './directive/test.directive';
     RouterModule,
     MatIconModule,
     DropdownDirective,
+    HasPermissionDirective,
     TestDirective,
     TitleFilterPipe,
     TruncatePipe,

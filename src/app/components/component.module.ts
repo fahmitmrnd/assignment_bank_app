@@ -5,6 +5,7 @@ import { ItemDetailComponent } from './list-items/item-detail/item-detail.compon
 import { ListItemsComponent } from './list-items/list-items.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { SpinnerComponent } from './spinner/spinner.component';
 import { UserFormComponent } from './user-form/user-form.component';
 
 @NgModule({
@@ -14,7 +15,8 @@ import { UserFormComponent } from './user-form/user-form.component';
     UserFormComponent,
     ListItemsComponent,
     ItemDetailComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    SpinnerComponent
   ],
   imports: [SharedModule],
   exports: [
@@ -22,7 +24,8 @@ import { UserFormComponent } from './user-form/user-form.component';
     ButtonComponent,
     UserFormComponent,
     ListItemsComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    SpinnerComponent
   ],
 })
 export class ComponentModule {}
