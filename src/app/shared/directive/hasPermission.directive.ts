@@ -1,10 +1,12 @@
-import { Directive, Input, OnInit, TemplateRef, ViewContainerRef } from "@angular/core";
+import { Directive, Input, OnDestroy, OnInit, TemplateRef, ViewContainerRef } from "@angular/core";
+import { Subject, takeUntil } from "rxjs";
 import { AuthService } from "../service/auth.service";
 
 @Directive({
   selector: '[appHasPermission]'
 })
-export class HasPermissionDirective implements OnInit {
+export class HasPermissionDirective implements OnInit, OnDestroy {
+  unsubscribe$: Subject<any> = new Subject();
 
   constructor(
     private templateRef: TemplateRef<any>,
@@ -14,6 +16,7 @@ export class HasPermissionDirective implements OnInit {
 
   ngOnInit(): void {
     this._authService.user
+    .pipe(takeUntil(this.unsubscribe$))
     .subscribe((user) => {
       if(!!user) {
         this.vcRef.createEmbeddedView(this.templateRef);
@@ -21,5 +24,10 @@ export class HasPermissionDirective implements OnInit {
         this.vcRef.clear();
       }
     })
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next(true);
+    this.unsubscribe$.complete();
   }
 }

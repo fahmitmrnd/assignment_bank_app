@@ -24,13 +24,24 @@ export class AuthService {
     }).pipe(tap((res) => this.authenticationHandler(res)))
   }
 
+  autoLogin() {
+    const user = JSON.parse((localStorage.getItem('userData') as string));
+    if(!user) {
+      return;
+    }
+
+    this.user.next(user);
+  }
+
   logout() {
     this.user.next(null);
     this._router.navigate(['/login']);
+    localStorage.removeItem('userData');
   }
 
   private authenticationHandler(userData: AuthResData) {
     this.user.next(userData);
     this._router.navigate(['/']);
+    localStorage.setItem('userData', JSON.stringify(userData));
   }
 }
