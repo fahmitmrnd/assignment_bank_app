@@ -5,7 +5,9 @@
 export const environment = {
   production: false,
   API_KEY: 'pttam.110494@gmail.com',
-  BASE_URL: 'https://web-assessment.apps.ocp.tmrnd.com.my/'
+  BASE_URL: 'https://web-assessment.apps.ocp.tmrnd.com.my/',
+  LOGIN_URL: 'api/auth/login',
+  USER_URL: 'api/user/',
 };
 
 /*

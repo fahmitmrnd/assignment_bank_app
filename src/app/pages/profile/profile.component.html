@@ -2,19 +2,21 @@
   <div class="panel">
 
     <div class="panel_left">
-      <h1>Username</h1>
+      <h1>{{ user['name'] }}</h1>
     </div>
 
     <div class="profile panel_right">
 
       <div class="profile_info">
-        <p>Bank Account No: <span>0123456789</span></p>
-        <p>ID no: <span>123456789</span></p>
-        <p>Account Balance: <span>0123456789</span></p>
-        <p>Type: <span>User</span></p>
+        <p>Bank Account No: <span>{{ user['bankAccountNo'] }}</span></p>
+        <p>ID no: <span>{{ user['idNo'] }}</span></p>
+        <p>Account Balance: <span>{{ user['bankAccountBalance'] }}</span></p>
+        <p>Role: <span>{{ user['role']}}</span></p>
+        <p>Email: <span>{{ user['email'] }}</span></p>
+        <p>Login ID: <span>{{ user['loginId']}}</span></p>
       </div>
 
-      <app-user-form-component></app-user-form-component>
+      <app-user-form-component [userData]="user"></app-user-form-component>
     </div>
 
   </div>

@@ -6,7 +6,6 @@ import { CommonModule } from '@angular/common';
 import { TitleFilterPipe } from './pipe/title-filter.pipe';
 import { TruncatePipe } from './pipe/truncate.pipe';
 import { ReactiveFormsModule } from '@angular/forms';
-import { TestDirective } from './directive/test.directive';
 import { HasPermissionDirective } from './directive/hasPermission.directive';
 import { HasPrivilegeDirective } from './directive/hasPrivilege.directive';
 
@@ -15,7 +14,6 @@ import { HasPrivilegeDirective } from './directive/hasPrivilege.directive';
     DropdownDirective,
     HasPermissionDirective,
     HasPrivilegeDirective,
-    TestDirective,
     TitleFilterPipe,
     TruncatePipe,
   ],
@@ -32,7 +30,6 @@ import { HasPrivilegeDirective } from './directive/hasPrivilege.directive';
     DropdownDirective,
     HasPermissionDirective,
     HasPrivilegeDirective,
-    TestDirective,
     TitleFilterPipe,
     TruncatePipe,
     ReactiveFormsModule

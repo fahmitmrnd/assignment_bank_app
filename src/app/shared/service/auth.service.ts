@@ -18,7 +18,7 @@ export class AuthService {
   ) {}
 
   login(loginId: string, password: string) {
-    const API = `${environment.BASE_URL}api/auth/login`
+    const API = `${environment.BASE_URL}${environment.LOGIN_URL}`
     return this._http.post<AuthResData>(API, {
       loginId, password
     }).pipe(tap((res) => this.authenticationHandler(res)))
@@ -52,10 +52,12 @@ export class AuthService {
     localStorage.removeItem('userData');
   }
 
-  private authenticationHandler(userData: AuthResData) {
-    this.user.next(userData);
-    this._router.navigate(['/']);
+  authenticationHandler(userData: AuthResData, onNavigate: boolean = true) {
     const user = this.filterUserRole(userData);
+    this.user.next(user);
     localStorage.setItem('userData', JSON.stringify(user));
+    if(onNavigate) {
+      this._router.navigate(['/']);
+    }
   }
 }

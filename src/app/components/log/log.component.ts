@@ -30,7 +30,6 @@ import { LogService } from 'src/app/shared/service/log.service';
 
       p {
         font-size: 1.3rem;
-        font-weight: bold;
         padding: 1rem;
         padding-left: .3rem;
       }
@@ -62,7 +61,14 @@ export class LogComponent implements OnInit, OnDestroy{
     .pipe(takeUntil(this.unsubscribe$))
     .subscribe((res: LogData) => {
       this.content = res;
+      this.autoClose();
     })
+  }
+
+  autoClose() {
+    setTimeout(() => {
+      this.onClose();
+    }, 3000);
   }
 
   onClose() {

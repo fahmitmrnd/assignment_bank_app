@@ -18,6 +18,7 @@ export class HasPermissionDirective implements OnInit, OnDestroy {
     this._authService.user
     .pipe(takeUntil(this.unsubscribe$))
     .subscribe((user) => {
+      this.vcRef.clear();
       if(!!user) {
         this.vcRef.createEmbeddedView(this.templateRef);
       } else {

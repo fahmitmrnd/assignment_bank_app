@@ -1,26 +1,46 @@
-<form class="form">
+<form class="form" [formGroup]="userForm" (ngSubmit)="onSubmit()">
 
   <div class="form_group">
     <div class="form_group-group">
 
       <div class="form_control">
         <label for="name">Name:</label>
-        <input type="text" id="name">
+        <input
+          [class.disabled]="!editMode"
+          formControlName="name"
+          type="text" id="name">
       </div>
 
       <div class="form_control">
         <label for="password">Password:</label>
-        <input type="password" id="password">
+        <input
+          [class.disabled]="!editMode"
+          formControlName="password"
+          type="password" id="password">
       </div>
 
       <div class="form_control">
-        <label for="id">Login ID:</label>
-        <input type="text" id="id">
+        <label for="idNo">ID No:</label>
+        <input
+          [class.disabled]="!editMode"
+          formControlName="idNo"
+          type="text" id="idNo">
       </div>
 
       <div class="form_control">
         <label for="email">Email:</label>
-        <input type="email" id="email">
+        <input
+          [class.disabled]="!editMode"
+          formControlName="email"
+          type="email" id="email">
+      </div>
+
+      <div class="form_control" *appHasPrivilege>
+        <label for="balance">Balance:</label>
+        <input
+          [class.disabled]="!editMode"
+          formControlName="bankAccountBalance"
+          type="number" id="balance">
       </div>
 
     </div>
@@ -30,45 +50,75 @@
       <div class="group">
         <div class="form_control">
           <label for="city">City:</label>
-          <input type="text" id="city">
+          <input
+            [class.disabled]="!editMode"
+            formControlName="city"
+            type="text" id="city">
         </div>
 
         <div class="form_control">
           <label for="postcode">Postcode:</label>
-          <input type="text" id="postcode">
+          <input
+            [class.disabled]="!editMode"
+            formControlName="postcode"
+            type="text" id="postcode">
         </div>
       </div>
 
       <div class="group">
         <div class="form_control">
           <label for="state">State:</label>
-          <input type="text" id="state">
+          <input
+            [class.disabled]="!editMode"
+            formControlName="state"
+            type="text" id="state">
         </div>
 
         <div class="form_control">
           <label for="country">Country:</label>
-          <input type="text" id="country">
+          <input
+            [class.disabled]="!editMode"
+            formControlName="country"
+            type="text" id="country">
         </div>
       </div>
 
       <div class="form_control">
         <label for="address1">Address 1:</label>
-        <input type="text" id="address1">
+        <input
+          [class.disabled]="!editMode"
+          formControlName="address1"
+          type="text" id="address1">
       </div>
 
       <div class="form_control">
         <label for="address2">Address 2:</label>
-        <input type="text" id="address2">
+        <input
+          [class.disabled]="!editMode"
+          formControlName="address2"
+          type="text" id="address2">
       </div>
 
     </div>
   </div>
 
   <div class="form_btn">
-    <app-button-component className="btn-primary" type="submit">
+    <app-button-component
+      *ngIf="!editMode"
+      (click)="onEditMode()"
+      className="btn-success">
+      Edit
+    </app-button-component>
+    <app-button-component
+      *ngIf="editMode"
+      className="btn-primary"
+      type="submit">
       Submit
     </app-button-component>
-    <app-button-component className="btn-danger" type="button">
+    <app-button-component
+      *ngIf="editMode"
+      (click)="onCancel()"
+      className="btn-danger">
       Cancel
     </app-button-component>
   </div>
