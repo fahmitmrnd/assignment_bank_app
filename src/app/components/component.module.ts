@@ -4,6 +4,7 @@ import { ButtonComponent } from './button/button.component';
 import { ItemDetailComponent } from './list-items/item-detail/item-detail.component';
 import { ListItemsComponent } from './list-items/list-items.component';
 import { LogComponent } from './log/log.component';
+import { ModalComponent } from './modal/modal.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { SpinnerComponent } from './spinner/spinner.component';
@@ -18,7 +19,8 @@ import { UserFormComponent } from './user-form/user-form.component';
     ItemDetailComponent,
     NotFoundComponent,
     SpinnerComponent,
-    LogComponent
+    LogComponent,
+    ModalComponent
   ],
   imports: [SharedModule],
   exports: [
@@ -28,7 +30,8 @@ import { UserFormComponent } from './user-form/user-form.component';
     ListItemsComponent,
     NotFoundComponent,
     SpinnerComponent,
-    LogComponent
+    LogComponent,
+    ModalComponent
   ],
 })
 export class ComponentModule {}

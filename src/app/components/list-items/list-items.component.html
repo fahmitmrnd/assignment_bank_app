@@ -1,6 +1,5 @@
 <div class="container">
   <ul class="list" *ngIf="listData && listData.length; else no_data">
-    <h1>TEST</h1>
     <app-item-detail-component
       [data]="item"
       *ngFor="let item of listData">

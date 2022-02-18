@@ -35,11 +35,4 @@ export class HistoryComponent implements OnInit {
       tap((data) => this.data = data)
     )
   }
-
-  // dataFilter(data: any) {
-  //   // This method will re-defining 'datetime' property to Date format instead of string
-  //   return data.map((item: {[k: string]: string}) => {
-  //     return {...item, datetime: new Date(item["datetime"]), value: `${item['value']}.00 $`}
-  //   });
-  // }
 }

@@ -1,4 +1,4 @@
-<li class="item">
+<li class="item" (click)="onSelect(data)">
   <p *ngFor="let item of itemKey" [ngSwitch]="itemData[item].type">
     {{item | titleFilter}}:
     <span *ngSwitchCase="'number'">
@@ -8,8 +8,8 @@
       {{itemData[item].value | date}}
     </span>
     <span *ngSwitchDefault>
-      <span *ngIf="item === 'id'">{{itemData[item].value | censored: 10}}</span>
-      <span *ngIf="item !== 'id'">{{itemData[item].value }}</span>
+      <span *ngIf="item === 'id'">{{ itemData[item].value | censored: 10}}</span>
+      <span *ngIf="item !== 'id'">{{ itemData[item].value }}</span>
     </span>
   </p>
 </li>

@@ -92,7 +92,7 @@ export class UserFormComponent implements OnInit, OnChanges, OnDestroy {
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe(
         (user) => {
-          this._usrService.onUpdatedUser(user);
+          this._usrService.onChangedDetect.next(user);
           this.editMode = false;
           this.onPromptMessage('Updated successfully!!', 'success');
         },

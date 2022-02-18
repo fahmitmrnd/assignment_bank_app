@@ -2,11 +2,10 @@
   <div class="panel">
 
     <div class="panel_left">
-      <h1>Username</h1>
+      <h1>Transaction history</h1>
     </div>
 
     <div class="panel_right">
-      <h3>Transaction history:</h3>
       <app-list-items-component *ngIf="data && data.length" [data]="data"></app-list-items-component>
     </div>
 

@@ -1,67 +1,85 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, ComponentFactoryResolver, OnDestroy, OnInit, ViewChild, ViewContainerRef } from "@angular/core";
+import { PlaceHolderDirective } from "src/app/shared/directive/placeholder.directive";
+import { AuthResData } from "src/app/shared/interface/auth.interface";
+import { UserService } from "src/app/shared/service/user.service";
+import { ModalComponent } from "src/app/components/modal/modal.component";
+import { Subject, takeUntil } from "rxjs";
 
 @Component({
   selector: 'app-management-component',
   templateUrl: './management.component.html',
   styleUrls: ['./management.component.scss']
 })
-export class ManagementComponent implements OnInit {
-  data = [
-    {
-      "id": "45738cda-1a77-4ffc-bcf3-6638f3ce1cc0",
-      "name": "Ann Le",
-      "idNo": "user12345",
-      "bankAccountNo": "890809",
-      "bankAccountBalance": 1200,
-      "loginId": "user5678",
-      "email": "user2@gmail.com",
-      "address1": "user2 address1",
-      "address2": "user2 address2",
-      "city": "HCM",
-      "postcode": "700000",
-      "state": "HCM",
-      "country": "VN",
-      "createDate": "2022-02-18T01:30:54.000+00:00",
-      "lastUpdate": "2022-02-18T04:54:45.000+00:00"
-    },
-    {
-      "id": "7ac65df6-1d54-4797-87d5-0a97fdbe0101",
-      "name": "Thanh Tam",
-      "idNo": "user1234",
-      "bankAccountNo": "941104",
-      "bankAccountBalance": 1400,
-      "loginId": "user1234",
-      "email": "user1@gmail.com",
-      "address1": "test address1123",
-      "address2": "test address1",
-      "city": "HCM",
-      "postcode": "700000",
-      "state": "HCM",
-      "country": "VN",
-      "createDate": "2022-02-18T01:29:33.000+00:00",
-      "lastUpdate": "2022-02-18T04:55:50.000+00:00"
-    },
-    {
-      "id": "e563db96-8f8d-44d1-bdc5-6f9034fe4756",
-      "name": "Admin",
-      "idNo": "admin1234",
-      "bankAccountNo": "123456",
-      "bankAccountBalance": 998000,
-      "loginId": "admin1234",
-      "email": "admin@gmail.com",
-      "address1": "admin address1",
-      "address2": "admin address2124",
-      "city": "HCM",
-      "postcode": "700000",
-      "state": "HCM",
-      "country": "VN",
-      "createDate": "2022-02-18T01:28:43.000+00:00",
-      "lastUpdate": "2022-02-18T03:27:05.000+00:00"
-    }
-  ]
-  constructor() {}
+export class ManagementComponent implements OnInit, OnDestroy {
+  @ViewChild(PlaceHolderDirective, { static: false }) placeholder: PlaceHolderDirective;
+  unsubscribe$: Subject<any> = new Subject();
+  data: any;
+  isLoading: boolean = true;
+
+  constructor(
+    private _usrService: UserService,
+    private _compFactoryRes: ComponentFactoryResolver
+  ) {}
 
   ngOnInit(): void {
+    this.onGetUsers();
+    this.onUserSelect();
+    this.onUserChanged();
+  }
 
+  ngOnDestroy(): void {
+    this.unsubscribe$.next(true);
+    this.unsubscribe$.complete();
+  }
+
+  onGetUsers() {
+    this._usrService.fetchAllUser()
+    .pipe(takeUntil(this.unsubscribe$))
+    .subscribe(
+      (users) => {
+        this.isLoading = false;
+        this.data = this.onUserFilter(users);
+        console.log(this.data);
+
+      },
+      () => {
+        this.isLoading = false;
+      }
+    )
+  }
+
+  onUserFilter(users: any) {
+    //Because API res doesn't contain user role, this method will check if email is starts with admin
+    //Assume admin will have email: admin@gmail.com
+    return users.filter((user: AuthResData) => !user['email'].startsWith('admin'))
+  }
+
+  onUserSelect() {
+    this._usrService.userSelected
+    .pipe(takeUntil(this.unsubscribe$))
+    .subscribe((user) => {
+      this.modal(user);
+    })
+  }
+
+  onUserChanged() {
+    this._usrService.onChangedDetect
+    .pipe(takeUntil(this.unsubscribe$))
+    .subscribe(() => {
+      this.onGetUsers();
+    })
+  }
+
+  private modal(userInfo: AuthResData) {
+    const modal = this._compFactoryRes.resolveComponentFactory(ModalComponent);
+    const placeholderRef = this.placeholder.viewContainerRef;
+    placeholderRef.clear();
+    const compRef = placeholderRef.createComponent(modal);
+    compRef.instance.data = userInfo;
+    compRef.instance.close
+    .pipe(takeUntil(this.unsubscribe$))
+    .subscribe(() => {
+      placeholderRef.clear();
+    })
   }
 }

@@ -8,6 +8,7 @@ export const environment = {
   BASE_URL: 'https://web-assessment.apps.ocp.tmrnd.com.my/',
   LOGIN_URL: 'api/auth/login',
   USER_URL: 'api/user/',
+  USERS_URL: 'api/users',
   TRANSACTION_URL: 'api/transaction/',
   TRANSACTIONS_URL: 'api/transactions/'
 };

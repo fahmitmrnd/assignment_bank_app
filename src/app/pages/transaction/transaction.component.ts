@@ -6,6 +6,7 @@ import { AuthService } from "src/app/shared/service/auth.service";
 import { LogService } from "src/app/shared/service/log.service";
 import { UserService } from "src/app/shared/service/user.service";
 import { TransactionService } from "src/app/shared/service/transaction.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-transaction-component',
@@ -23,6 +24,7 @@ export class TransactionComponent implements OnInit, OnDestroy {
     private _logService: LogService,
     private _transactionService: TransactionService,
     private _usrService: UserService,
+    private _router: Router
   ) {}
 
   ngOnInit(): void {
@@ -110,5 +112,9 @@ export class TransactionComponent implements OnInit, OnDestroy {
       message: message,
       type: type
     })
+  }
+
+  onCancel() {
+    this._router.navigate(['/']);
   }
 }

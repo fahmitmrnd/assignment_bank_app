@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
+import { UserService } from "src/app/shared/service/user.service";
 
 @Component({
   selector: 'app-item-detail-component',
@@ -9,7 +10,9 @@ export class ItemDetailComponent implements OnInit {
 
   @Input() data: any = {};
 
-  constructor() {
+  constructor(
+    private _usrService: UserService
+  ) {
   }
 
   ngOnInit(): void {}
@@ -29,5 +32,9 @@ export class ItemDetailComponent implements OnInit {
       }
       return prev;
     }, {})
+  }
+
+  onSelect(userInfo: any) {
+    this._usrService.userSelected.next(userInfo);
   }
 }

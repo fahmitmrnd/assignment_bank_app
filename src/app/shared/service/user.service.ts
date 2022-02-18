@@ -10,6 +10,9 @@ import { AuthService } from "./auth.service";
 })
 export class UserService implements OnDestroy{
   unsubscribe$: Subject<any> = new Subject();
+  userSelected: Subject<AuthResData> = new Subject();
+  onChangedDetect: Subject<AuthResData> = new Subject();
+
   constructor(
     private _http: HttpClient,
     private _authService: AuthService
@@ -20,8 +23,9 @@ export class UserService implements OnDestroy{
     return this._http.put<AuthResData>(API, reqBody)
   }
 
-  onUpdatedUser(user: AuthResData) {
-    this._authService.authenticationHandler(user, false);
+  fetchAllUser() {
+    const API = `${environment.BASE_URL}${environment.USERS_URL}`;
+    return this._http.get(API);
   }
 
   onRefetchUser(userId: string) {

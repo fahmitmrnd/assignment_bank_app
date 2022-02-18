@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Subject, takeUntil } from "rxjs";
 import { AuthResData } from "src/app/shared/interface/auth.interface";
 import { AuthService } from "src/app/shared/service/auth.service";
+import { UserService } from "src/app/shared/service/user.service";
 
 @Component({
   selector: 'app-profile-component',
@@ -13,16 +14,27 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   user: AuthResData;
   constructor(
-    private _authService: AuthService
+    private _authService: AuthService,
+    private _usrService: UserService
   ) {}
 
   ngOnInit(): void {
     this.onGetUser();
+    this.onUserChanged();
   }
 
   ngOnDestroy(): void {
     this.unsubscribe$.next(true);
     this.unsubscribe$.complete();
+  }
+
+  onUserChanged() {
+    this._usrService.onChangedDetect
+    .pipe(takeUntil(this.unsubscribe$))
+    .subscribe((user) => {
+      this._authService.authenticationHandler(user, false);
+      this.onGetUser();
+    })
   }
 
   onGetUser() {
