@@ -1,5 +1,6 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subject, takeUntil } from 'rxjs';
 import { AuthResData } from 'src/app/shared/interface/auth.interface';
 import { LogService } from 'src/app/shared/service/log.service';
 import { UserService } from 'src/app/shared/service/user.service';
@@ -9,7 +10,8 @@ import { UserService } from 'src/app/shared/service/user.service';
   templateUrl: './user-form.component.html',
   styleUrls: ['./user-form.component.scss'],
 })
-export class UserFormComponent implements OnInit, OnChanges {
+export class UserFormComponent implements OnInit, OnChanges, OnDestroy {
+  unsubscribe$: Subject<any> = new Subject();
   @Input() userData: AuthResData;
   editMode: boolean = false;
   userId: string;
@@ -26,6 +28,11 @@ export class UserFormComponent implements OnInit, OnChanges {
 
   ngOnChanges(): void {
     this.onResetForm();
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next(true);
+    this.unsubscribe$.complete();
   }
 
   initForm() {
@@ -72,24 +79,26 @@ export class UserFormComponent implements OnInit, OnChanges {
     this.initForm();
   }
 
+  onPromptMessage(message: string, type: string) {
+    this._logService.content.next({
+      message: message,
+      type: type
+    })
+  }
+
   onSubmit() {
     if(this.userForm.valid) {
       this._usrService.updateUser(this.userForm.value, this.userId)
+      .pipe(takeUntil(this.unsubscribe$))
       .subscribe(
         (user) => {
           this._usrService.onUpdatedUser(user);
           this.editMode = false;
-          this._logService.content.next({
-            message: 'Updated successfully!!',
-            type: 'success'
-          })
+          this.onPromptMessage('Updated successfully!!', 'success');
         },
         () => {
           this.editMode = false;
-          this._logService.content.next({
-            message: 'Updated failed!!',
-            type: 'fail'
-          })
+          this.onPromptMessage('Updated failed!!', 'fail');
         }
       );
     }

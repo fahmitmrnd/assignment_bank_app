@@ -1,4 +1,7 @@
 import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute, Params } from "@angular/router";
+import { of, Subject, switchMap, takeUntil, tap } from "rxjs";
+import { TransactionService } from "src/app/shared/service/transaction.service";
 
 @Component({
   selector: 'app-history-component',
@@ -6,83 +9,37 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ['./history.component.scss']
 })
 export class HistoryComponent implements OnInit {
-  mockData = [
-    {
-      "id": "3fa85f64-5717-4562-b3fc-2c963eef66afa6",
-      "recipient": "string",
-      "sender": "string",
-      "value": 0,
-      "status": "string",
-      "dateTime": new Date()
-    },
-    {
-      "id": "3fa85f64-5717-4562-b3fc-2c96234234afa6",
-      "recipient": "string",
-      "sender": "string",
-      "value": 0,
-      "status": "string",
-      "dateTime": new Date()
-    },
-    {
-      "id": "3fa85f64-5717-4562-b3fc-2c963th4f66afa6",
-      "recipient": "string",
-      "sender": "string",
-      "value": 0,
-      "status": "string",
-      "dateTime": new Date()
-    },
-    {
-      "id": "3fa85f64-5717-4562-b3fc-2c963eef66afa6",
-      "recipient": "string",
-      "sender": "string",
-      "value": 0,
-      "status": "string",
-      "dateTime": new Date()
-    },
-    {
-      "id": "3fa85f64-5717-4562-b3fc-2c96234234afa6",
-      "recipient": "string",
-      "sender": "string",
-      "value": 0,
-      "status": "string",
-      "dateTime": new Date()
-    },
-    {
-      "id": "3fa85f64-5717-4562-b3fc-2c963th4f66afa6",
-      "recipient": "string",
-      "sender": "string",
-      "value": 0,
-      "status": "string",
-      "dateTime": new Date()
-    },
-    {
-      "id": "3fa85f64-5717-4562-b3fc-2c963eef66afa6",
-      "recipient": "string",
-      "sender": "string",
-      "value": 0,
-      "status": "string",
-      "dateTime": new Date()
-    },
-    {
-      "id": "3fa85f64-5717-4562-b3fc-2c96234234afa6",
-      "recipient": "string",
-      "sender": "string",
-      "value": 0,
-      "status": "string",
-      "dateTime": new Date(),
-    },
-    {
-      "id": "3fa85f64-5717-4562-b3fc-2c963th4f66afa6",
-      "recipient": "string",
-      "sender": "string",
-      "value": 0,
-      "status": "string",
-      "dateTime": new Date()
-    }
-  ]
-  constructor() {}
+  unsubscribe$: Subject<any> = new Subject();
+  data: any;
+
+  constructor(
+    private _transactionService: TransactionService,
+    private _route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
+    this._route.params
+    .pipe(
+      switchMap((param: Params) => {
+        const { id } = param;
+        return this.onGetAllTrans(id);
+    }))
+    .subscribe();
+  }
 
+  onGetAllTrans(userId: string) {
+    return this._transactionService
+    .getAllTransactions(userId)
+    .pipe(
+      takeUntil(this.unsubscribe$),
+      tap((data) => this.data = this.dataFilter(data))
+    )
+  }
+
+  dataFilter(data: any) {
+    // This method will re-defining 'datetime' property to Date format instead of string
+    return data.map((item: {[k: string]: string}) => {
+      return {...item, datetime: new Date(item["datetime"]), value: `${item['value']}.00 $`}
+    });
   }
 }

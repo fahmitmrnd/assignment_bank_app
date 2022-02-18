@@ -2,13 +2,22 @@
   <div class="form">
 
     <div class="form_header">
-      Transfer Money
+      <h3>Transfer Money</h3>
+      <p>Current balance:
+        <span>
+          {{ user && user['bankAccountBalance'] }}.00$
+        </span>
+      </p>
     </div>
 
-    <form class="form_group" [formGroup]="transactionForm" (ngSubmit)="onSubmit()">
+    <form
+      *ngIf="!isLoading; else loading"
+      class="form_group"
+      [formGroup]="transactionForm"
+      (ngSubmit)="onSubmit()">
       <div class="form_control">
         <label for="sender">Sender:</label>
-        <input formControlName="sender" type="text" id="sender" class="disabled" value="username">
+        <input formControlName="sender" type="text" id="sender" class="disabled">
       </div>
 
       <div class="form_control">
@@ -17,7 +26,6 @@
         <div *ngIf="transactionForm.get('recipient')?.invalid && transactionForm.get('recipient')?.touched">
           <p *ngIf="transactionForm.get('recipient')?.errors!['required']">Please provide sender</p>
         </div>
-        <!-- <div [appTestDirective]="transactionForm.get('recipient')?.invalid && transactionForm.get('recipient')?.touched"></div> -->
       </div>
 
       <div class="form_control">
@@ -26,6 +34,7 @@
         <div *ngIf="transactionForm.get('amount')?.invalid && transactionForm.get('amount')?.touched">
           <p *ngIf="transactionForm.get('amount')?.errors!['exceed']">Exceed balance</p>
           <p *ngIf="transactionForm.get('amount')?.errors!['required']">Please provide amount</p>
+          <p *ngIf="transactionForm.get('amount')?.errors!['below']">Amount muse be greater than 0</p>
         </div>
       </div>
 
@@ -44,5 +53,9 @@
       </div>
 
     </form>
+
+    <ng-template #loading>
+      <app-spinner-component></app-spinner-component>
+    </ng-template>
   </div>
 </div>

@@ -12,8 +12,7 @@ export class ItemDetailComponent implements OnInit {
   constructor() {
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   get itemKey() {
     const item = Object.keys(this.data);
