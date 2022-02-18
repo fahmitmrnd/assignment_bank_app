@@ -1,0 +1,31 @@
+.panel {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120rem;
+  min-height: 40rem;
+  padding: 2rem;
+  border-radius: 2rem;
+  background-color: #ccc;
+
+  &_left,
+  &_right {
+    padding: 0 2rem;
+  }
+
+  &_left {
+    width: 20%;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    border-right: 1px solid #000;
+  }
+
+  &_right {
+    flex: 1;
+    h3 {
+      font-size: 1.5rem;
+    }
+  }
+}

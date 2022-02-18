@@ -8,11 +8,16 @@
     <div class="nav_navbar">
       <ul class="nav_navbar-group">
         <li class="nav_navbar-group_item">
-          <a routerLink="/">Home</a>
+          <a
+            routerLink="/"
+            [routerLinkActive]="'active'"
+            [routerLinkActiveOptions]="{exact: true}">Home</a>
         </li>
 
         <li class="nav_navbar-group_item">
-          <a [routerLink]="['/user', 1, 'transaction']">Transfer Money</a>
+          <a
+            [routerLink]="['/user', 1, 'transaction']"
+            [routerLinkActive]="'active'">Transfer Money</a>
         </li>
       </ul>
     </div>
@@ -23,7 +28,7 @@
       <ul class="nav_user-dropdown">
         <li
           *appHasPrivilege
-          [routerLink]="['/user', 1, 'profile']"
+          routerLink="management"
           class="nav_user-dropdown_item">
           <mat-icon>manage_accounts</mat-icon>
           <p>Manage</p>

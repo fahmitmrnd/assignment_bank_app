@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="panel">
+
+    <div class="panel_left">
+      <h1>Username</h1>
+    </div>
+
+    <div class="panel_right">
+      <h3>Users management:</h3>
+      <app-list-items-component *ngIf="data && data.length" [data]="data"></app-list-items-component>
+    </div>
+
+  </div>
+</div>

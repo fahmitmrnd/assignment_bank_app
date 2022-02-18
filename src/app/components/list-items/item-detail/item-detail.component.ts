@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from "@angular/core";
 })
 export class ItemDetailComponent implements OnInit {
 
-  @Input() data: {[k: string]: any} = {};
+  @Input() data: any = {};
 
   constructor() {
   }

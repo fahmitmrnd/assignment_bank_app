@@ -32,14 +32,14 @@ export class HistoryComponent implements OnInit {
     .getAllTransactions(userId)
     .pipe(
       takeUntil(this.unsubscribe$),
-      tap((data) => this.data = this.dataFilter(data))
+      tap((data) => this.data = data)
     )
   }
 
-  dataFilter(data: any) {
-    // This method will re-defining 'datetime' property to Date format instead of string
-    return data.map((item: {[k: string]: string}) => {
-      return {...item, datetime: new Date(item["datetime"]), value: `${item['value']}.00 $`}
-    });
-  }
+  // dataFilter(data: any) {
+  //   // This method will re-defining 'datetime' property to Date format instead of string
+  //   return data.map((item: {[k: string]: string}) => {
+  //     return {...item, datetime: new Date(item["datetime"]), value: `${item['value']}.00 $`}
+  //   });
+  // }
 }

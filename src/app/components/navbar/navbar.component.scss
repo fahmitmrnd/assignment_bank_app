@@ -25,16 +25,25 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 0 2rem;
+
         height: 100%;
+
+        .active {
+          color: #fff;
+          background-color: #000;
+        }
 
         &:not(:last-child) {
           margin-right: 2rem;
         }
 
         a {
+          display: inline-block;
           font-size: 1.4rem;
           text-transform: uppercase;
+          height: 100%;
+          padding: 1rem;
+          line-height: 2;
         }
       }
     }
