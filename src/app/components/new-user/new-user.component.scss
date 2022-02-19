@@ -1,0 +1,70 @@
+form {
+  .form_group {
+    position: relative;
+    display: flex;
+    .form_left,
+    .form_right {
+      flex: 1;
+      padding: 2rem;
+
+      .form_control-group {
+        display: flex;
+      }
+
+      .form_control {
+        width: 100%;
+        padding: 0 1rem;
+
+        label {
+          display: block;
+          padding: 1rem 0;
+          font-size: 1.4rem;
+        }
+
+        input {
+          width: 100%;
+          padding: 1rem;
+
+          background-color: #fff;
+          border: 1px solid #ccc;
+        }
+
+        p {
+          color: red;
+        }
+      }
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 10%;
+      left: 50%;
+      height: 80%;
+      width: .1rem;
+      background-color: #ccc;
+    }
+  }
+
+  .form_btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 4rem;
+
+    a {
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    button {
+      padding: 1rem 2rem;
+      border-radius: 2rem;
+
+      color: #fff;
+      background-color: green;
+
+      cursor: pointer;
+    }
+  }
+}

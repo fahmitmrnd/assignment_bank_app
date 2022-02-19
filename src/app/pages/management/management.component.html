@@ -6,8 +6,17 @@
     </div>
 
     <div class="panel_right">
-      <app-button-component className="btn-success">Create user</app-button-component>
-      <app-list-items-component *ngIf="data && data.length && !isLoading; else loading" [data]="data"></app-list-items-component>
+      <app-button-component *ngIf="!isCreateMode" (click)="onCreateMode()" className="btn-success">Create user</app-button-component>
+      <mat-icon *ngIf="isCreateMode" (click)="onCancel()">close</mat-icon>
+      <div class="panel_right-form">
+        <div class="form_left" *ngIf="!isCreateMode">
+          <app-list-items-component *ngIf="data && data.length && !isLoading; else loading" [data]="data">
+          </app-list-items-component>
+        </div>
+        <div class="form_right" *ngIf="isCreateMode">
+          <app-new-user-component></app-new-user-component>
+        </div>
+      </div>
       <ng-template #loading>
         <div class="spinner">
           <app-spinner-component></app-spinner-component>

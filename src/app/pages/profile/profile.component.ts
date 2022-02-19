@@ -32,7 +32,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this._usrService.onChangedDetect
     .pipe(takeUntil(this.unsubscribe$))
     .subscribe((user) => {
-      this._authService.authenticationHandler(user, false);
+      this._authService.authenticationHandler(user!, false);
       this.onGetUser();
     })
   }

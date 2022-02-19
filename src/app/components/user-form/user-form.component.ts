@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { AuthResData } from 'src/app/shared/interface/auth.interface';
 import { LogService } from 'src/app/shared/service/log.service';
@@ -18,7 +19,8 @@ export class UserFormComponent implements OnInit, OnChanges, OnDestroy {
   userForm: FormGroup;
   constructor(
     private _usrService: UserService,
-    private _logService: LogService
+    private _logService: LogService,
+    private _router: Router
   ) {}
 
   ngOnInit(): void {
@@ -84,6 +86,21 @@ export class UserFormComponent implements OnInit, OnChanges, OnDestroy {
       message: message,
       type: type
     })
+  }
+
+  onDeleteUser() {
+    const { id } = this.userData;
+    this._usrService.deleteUser(id)
+    .pipe(takeUntil(this.unsubscribe$))
+    .subscribe(
+      (user) => {
+        this._usrService.onChangedDetect.next(user);
+        this.onPromptMessage('Delete successfully!!', 'success');
+      },
+      () => {
+        this.onPromptMessage('Delete failed!!', 'fail');
+      }
+    );
   }
 
   onSubmit() {

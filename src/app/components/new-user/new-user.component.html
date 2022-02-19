@@ -1,0 +1,137 @@
+<div class="container">
+  <form [formGroup]="newUserForm" (ngSubmit)="onSubmit()">
+
+    <div class="form_group">
+      <div class="form_left">
+        <div class="form_control">
+          <label for="name">Name:</label>
+          <input formControlName="name" type="text" id="name">
+          <div *ngIf="newUserForm.get('name')?.invalid && newUserForm.get('name')?.touched">
+            <p *ngIf="newUserForm.get('name')?.errors!['required']">Please provide name</p>
+          </div>
+        </div>
+
+        <div class="form_control">
+          <label for="email">Email:</label>
+          <input formControlName="email" type="email" id="email">
+          <div *ngIf="newUserForm.get('email')?.invalid && newUserForm.get('email')?.touched">
+            <p *ngIf="newUserForm.get('email')?.errors!['required']">Please provide email</p>
+            <p *ngIf="newUserForm.get('email')?.errors!['email']">Please provide valid email</p>
+          </div>
+        </div>
+
+        <div class="form_control">
+          <label for="id">Login ID:</label>
+          <input formControlName="loginId" type="tex" id="id">
+          <div *ngIf="newUserForm.get('loginId')?.invalid && newUserForm.get('loginId')?.touched">
+            <p *ngIf="newUserForm.get('loginId')?.errors!['required']">Please provide login ID</p>
+          </div>
+        </div>
+
+        <div class="form_control">
+          <label for="password">Password:</label>
+          <input formControlName="password" type="password" id="password">
+          <div *ngIf="newUserForm.get('password')?.invalid && newUserForm.get('password')?.touched">
+            <p *ngIf="newUserForm.get('password')?.errors!['required']">Please provide password</p>
+          </div>
+        </div>
+
+        <div class="form_control">
+          <label for="bankAccountNo">Bank Account no:</label>
+          <input formControlName="bankAccountNo" type="text" id="bankAccountNo">
+          <div *ngIf="newUserForm.get('bankAccountNo')?.invalid && newUserForm.get('bankAccountNo')?.touched">
+            <p *ngIf="newUserForm.get('bankAccountNo')?.errors!['required']">Please provide bank account no</p>
+          </div>
+        </div>
+
+        <div class="form_control">
+          <label for="bankAccountBalance">Account balance:</label>
+          <input formControlName="bankAccountBalance" type="text" id="bankAccountBalance">
+          <div *ngIf="newUserForm.get('bankAccountBalance')?.invalid && newUserForm.get('bankAccountBalance')?.touched">
+            <p *ngIf="newUserForm.get('bankAccountBalance')?.errors!['required']">Please provide bank account balance</p>
+            <p *ngIf="newUserForm.get('bankAccountBalance')?.errors!['below']">Balance must be greater than 0</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="form_right">
+
+        <div class="form_control-group">
+          <div class="form_control">
+            <label for="idNo">ID no:</label>
+            <input formControlName="idNo" type="text" id="idNo">
+            <div *ngIf="newUserForm.get('idNo')?.invalid && newUserForm.get('idNo')?.touched">
+              <p *ngIf="newUserForm.get('idNo')?.errors!['required']">Please provide ID no</p>
+            </div>
+          </div>
+
+          <div class="form_control">
+            <label for="type">Type:</label>
+            <input formControlName="type" type="text" id="type">
+            <div *ngIf="newUserForm.get('type')?.invalid && newUserForm.get('type')?.touched">
+              <p *ngIf="newUserForm.get('type')?.errors!['required']">Please provide type</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="form_control-group">
+          <div class="form_control">
+            <label for="city">City:</label>
+            <input formControlName="city" type="text" id="city">
+            <div *ngIf="newUserForm.get('city')?.invalid && newUserForm.get('city')?.touched">
+              <p *ngIf="newUserForm.get('city')?.errors!['required']">Please provide city</p>
+            </div>
+          </div>
+
+          <div class="form_control">
+            <label for="postcode">Postcode:</label>
+            <input formControlName="postcode" type="number" id="postcode">
+            <div *ngIf="newUserForm.get('postcode')?.invalid && newUserForm.get('postcode')?.touched">
+              <p *ngIf="newUserForm.get('postcode')?.errors!['required']">Please provide postcode</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="form_control-group">
+          <div class="form_control">
+            <label for="state">State:</label>
+            <input formControlName="state" type="text" id="state">
+            <div *ngIf="newUserForm.get('state')?.invalid && newUserForm.get('state')?.touched">
+              <p *ngIf="newUserForm.get('state')?.errors!['required']">Please provide state</p>
+            </div>
+          </div>
+
+          <div class="form_control">
+            <label for="country">Country:</label>
+            <input formControlName="country" type="text" id="country">
+            <div *ngIf="newUserForm.get('country')?.invalid && newUserForm.get('country')?.touched">
+              <p *ngIf="newUserForm.get('country')?.errors!['required']">Please provide country</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="form_control">
+          <label for="address1">Address 1:</label>
+          <input formControlName="address1" type="text" id="address1">
+          <div *ngIf="newUserForm.get('address1')?.invalid && newUserForm.get('address1')?.touched">
+              <p *ngIf="newUserForm.get('address1')?.errors!['required']">Please provide address</p>
+            </div>
+        </div>
+
+        <div class="form_control">
+          <label for="address2">Address 2:</label>
+          <input formControlName="address2" type="text" id="address2">
+          <div *ngIf="newUserForm.get('address2')?.invalid && newUserForm.get('address2')?.touched">
+              <p *ngIf="newUserForm.get('address2')?.errors!['required']">Please provide address</p>
+            </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="form_btn">
+      <app-button-component className="btn-success" type="submit" [disabled]="newUserForm.invalid">Create</app-button-component>
+    </div>
+
+  </form>
+</div>

@@ -11,7 +11,7 @@ import { AuthService } from "./auth.service";
 export class UserService implements OnDestroy{
   unsubscribe$: Subject<any> = new Subject();
   userSelected: Subject<AuthResData> = new Subject();
-  onChangedDetect: Subject<AuthResData> = new Subject();
+  onChangedDetect: Subject<AuthResData | null> = new Subject();
 
   constructor(
     private _http: HttpClient,
@@ -20,7 +20,12 @@ export class UserService implements OnDestroy{
 
   updateUser(reqBody: AuthReqData, userId: string) {
     const API = `${environment.BASE_URL}${environment.USER_URL}${userId}`;
-    return this._http.put<AuthResData>(API, reqBody)
+    return this._http.put<AuthResData>(API, reqBody);
+  }
+
+  deleteUser(userId: string) {
+    const API = `${environment.BASE_URL}${environment.USER_URL}${userId}`;
+    return this._http.delete<AuthResData>(API);
   }
 
   fetchAllUser() {
@@ -41,5 +46,10 @@ export class UserService implements OnDestroy{
   ngOnDestroy(): void {
     this.unsubscribe$.next(true);
     this.unsubscribe$.complete();
+  }
+
+  createUser(reqObj: any) {
+    const API = `${environment.BASE_URL}${environment.USER_URL}`;
+    return this._http.post(API, reqObj);
   }
 }

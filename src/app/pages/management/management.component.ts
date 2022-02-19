@@ -15,6 +15,7 @@ export class ManagementComponent implements OnInit, OnDestroy {
   unsubscribe$: Subject<any> = new Subject();
   data: any;
   isLoading: boolean = true;
+  isCreateMode: boolean = false;
 
   constructor(
     private _usrService: UserService,
@@ -67,7 +68,16 @@ export class ManagementComponent implements OnInit, OnDestroy {
     .pipe(takeUntil(this.unsubscribe$))
     .subscribe(() => {
       this.onGetUsers();
+      this.isCreateMode = false;
     })
+  }
+
+  onCreateMode() {
+    this.isCreateMode = true;
+  }
+
+  onCancel() {
+    this.isCreateMode = false;
   }
 
   private modal(userInfo: AuthResData) {

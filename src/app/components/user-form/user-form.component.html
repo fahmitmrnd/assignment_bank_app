@@ -103,12 +103,21 @@
   </div>
 
   <div class="form_btn">
-    <app-button-component
-      *ngIf="!editMode"
-      (click)="onEditMode()"
-      className="btn-success">
-      Edit
-    </app-button-component>
+    <div>
+      <app-button-component
+        *ngIf="!editMode"
+        (click)="onDeleteUser()"
+        className="btn-danger">
+        Delete
+      </app-button-component>
+      <app-button-component
+        *ngIf="!editMode"
+        (click)="onEditMode()"
+        className="btn-success">
+        Edit
+      </app-button-component>
+    </div>
+
     <app-button-component
       *ngIf="editMode"
       className="btn-primary"

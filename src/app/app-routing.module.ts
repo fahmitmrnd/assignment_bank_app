@@ -5,7 +5,6 @@ import { HomeComponent } from "./pages/home/home.component";
 import { LoginComponent } from "./pages/login/login.component";
 import { ManagementComponent } from "./pages/management/management.component";
 import { ProfileComponent } from "./pages/profile/profile.component";
-import { SignupComponent } from "./pages/signup/signup.component";
 import { TransactionComponent } from "./pages/transaction/transaction.component";
 import { AuthGuard } from "./shared/guard/auth.guard";
 import { PrivilegeGuard } from "./shared/guard/privilege.guard.";
